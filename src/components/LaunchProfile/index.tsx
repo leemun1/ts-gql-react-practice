@@ -1,12 +1,16 @@
 import * as React from 'react';
 
 import { useLaunchProfileQuery } from '../../generated/graphql';
-import LaunchProfile from './LaunchProfile';
+import LaunchProfile, { OwnProps } from './LaunchProfile';
 
-const LaunchProfileContainer = () => {
-  const { data, error, loading } = useLaunchProfileQuery({
-    variables: { id: '42' },
+const LaunchProfileContainer = ({ id }: OwnProps) => {
+  const { data, error, loading, refetch } = useLaunchProfileQuery({
+    variables: { id: String(id) },
   });
+
+  React.useEffect(() => {
+    refetch();
+  }, [id, refetch]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -20,7 +24,7 @@ const LaunchProfileContainer = () => {
     return <div>Select a flight from the panel</div>;
   }
 
-  return <LaunchProfile data={data} />;
+  return <LaunchProfile data={data} id={id} />;
 };
 
 export default LaunchProfileContainer;

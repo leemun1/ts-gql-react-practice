@@ -3,9 +3,13 @@ import * as React from 'react';
 import { LaunchProfileQuery } from '../../generated/graphql';
 import './styles.css';
 
+export type OwnProps = {
+  id: number;
+};
+
 type Props = {
   data: LaunchProfileQuery;
-};
+} & OwnProps;
 
 const className = 'LaunchProfile';
 
