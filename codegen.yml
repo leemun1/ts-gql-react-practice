@@ -1,6 +1,6 @@
 overwrite: true
 schema: 'https://spacexdata.herokuapp.com/graphql'
-documents: './src/components/**/*.'
+documents: './src/components/**/*'
 generates:
   src/generated/graphql.tsx:
     plugins:
